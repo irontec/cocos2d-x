@@ -92,6 +92,13 @@ public:
     @return  The path that can write/read file
     */
     std::string getWriteablePath();
+    
+    /**
+    @brief  Create a direcotry in writable path.
+    @param   pDirectoryName     Direcotry name.
+    @return  True if direcotry is created.
+    */
+    bool createDirectoryInPath(char *pDirectoryName);
 
     /**
     @brief Set/Get whether pop-up a message box when the image load failed

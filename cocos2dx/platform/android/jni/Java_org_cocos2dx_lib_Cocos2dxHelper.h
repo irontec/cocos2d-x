@@ -39,6 +39,7 @@ extern "C" {
     extern void enableAccelerometerJNI();
     extern void disableAccelerometerJNI();
     extern void setAccelerometerIntervalJNI(float interval);
+    extern bool createDirectoryInPathJNI(char *pDirectoryName);
 }
 
 #endif

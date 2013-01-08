@@ -317,6 +317,24 @@ std::string CCFileUtils::getWriteablePath()
     return strRet;
 }
 
+bool CCFileUtils::createDirectoryInPath(char *pDirectoryName)
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *newPath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithUTF8String:pDirectoryName]];
+    
+    if (![[NSFileManager defaultManager] fileExistsAtPath:newPath])
+    {
+        NSError* error;
+        
+        if( [[NSFileManager defaultManager] createDirectoryAtPath:newPath withIntermediateDirectories:NO attributes:nil error:&error])
+            return true;
+    }
+    
+    return false;
+}
+
+
 unsigned char* CCFileUtils::getFileDataFromZip(const char* pszZipFilePath, const char* pszFileName, unsigned long * pSize)
 {
         unsigned char * pBuffer = NULL;

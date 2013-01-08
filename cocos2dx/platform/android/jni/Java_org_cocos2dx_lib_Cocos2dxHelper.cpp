@@ -146,6 +146,27 @@ extern "C" {
 
         return 0;
     }
+    
+    bool createDirectoryInPathJNI(char *pDirectoryName) {
+        JniMethodInfo t;
+        jstring stringArg1;
+        
+                
+        if (!pDirectoryName)
+            return 0;
+        
+        
+        if (JniHelper::getStaticMethodInfo(t, CLASS_NAME, "createDirectoryInPath", "(Ljava/lang/String;)Z")) {
+            stringArg1 = t.env->NewStringUTF(pDirectoryName);
+            jboolean ret = (jboolean)t.env->CallStaticBooleanMethod(t.classID, t.methodID, stringArg1);
+            t.env->DeleteLocalRef(stringArg1);
+            t.env->DeleteLocalRef(t.classID);
+            
+            return (bool)ret;
+        }
+    
+        return 0;
+    }
 
     const char* getCurrentLanguageJNI() {
         JniMethodInfo t;

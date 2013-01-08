@@ -31,6 +31,7 @@ import android.content.pm.ApplicationInfo;
 import android.content.res.AssetManager;
 import android.os.Build;
 import android.os.Environment;
+import java.io.File;
 
 public class Cocos2dxHelper {
 	// ===========================================================
@@ -252,6 +253,11 @@ public class Cocos2dxHelper {
 	private static String getAbsolutePathOnExternalStorage(final ApplicationInfo pApplicationInfo, final String pPath) {
 		return Environment.getExternalStorageDirectory() + "/Android/data/" + pApplicationInfo.packageName + "/files/" + pPath;
 	}
+    
+    public static boolean createDirectoryInPath(final String pDirectoryName) {
+        File f = new File(sCacheDirectory + "/" + pDirectoryName);
+        return f.mkdir();
+    }
 
 	// ===========================================================
 	// Inner and Anonymous Classes
